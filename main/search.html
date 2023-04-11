@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+<meta name="description" content="唤醒神兽搜索神兽详情">
+<title>唤醒神兽</title> 
+<link rel="icon" href="https://i.ibb.co/WDxBsPP/Whiteboard-3-removebg-preview-1.png" type="image/x-icon" alt="唤醒神兽logomythicalcreaturesMythicalCreatures">
+<style>
+#spikes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  background: black;
+  transform: translate(-50%, -50%);
+}
+
+#spikes:before,
+#spikes:after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 50px;
+  height: 50px;
+  background: black;
+  transform: rotate(45deg);
+}
+
+#spikes:after {
+  transform: rotate(-45deg);
+}
+
+
+#gallery img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 5px #66afe9;
+  transition: box-shadow 0.3s ease-in-out;
+  /*z-index: 999;*/
+  position:relative;
+
+}
+
+#gallery img:hover {
+  box-shadow: 0 0 10px #66afe9;
+  /*z-index: 999;*/
+  position:relative;
+
+}
+
+
+#search {
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+  width: 80%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #f8f8f8 url(null) no-repeat 10px center;
+  background-size: 20px 20px;
+
+
+}
+
+#search:focus {
+  outline: none;
+  border-color: #66afe9;
+  box-shadow: 0 0 5px #66afe9;
+
+
+}
+
+.overlay {
+    position: relative;
+    display: inline-block;
+    border-radius: 30px;
+  }
+
+  .overlay:hover .text {
+    opacity: 1;
+    z-index: 1;
+    border-radius: 30px;
+  }
+
+  .text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-in-out;
+    border-radius: 30px;
+    }
+</style>
+</head>
+<input type="text" id="search" placeholder="搜索神兽" autocomplete="off">
+<br><br>
+<div id="gallery">
+  <!--钩蛇-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw-2023-info-gou-she/home" class="overlay"><img src="https://i.ibb.co/4RcB4Vf/v2-e19804b6c0660214a574b3004ce36a0b-720w-1.jpg" alt="gousheGouShe钩蛇"><div class="text">钩蛇</div></a>
+  <!--蛊雕-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw-2023-info-gu-diao/home" class="overlay"><img src="https://i.ibb.co/tDcKw91/Untitled-4-1.png" alt="gudiaoGuDiao蛊雕"><div class="text">蛊雕</div></a>  
+  <!--彭侯-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-penghou/home" class="overlay"><img src="https://i.ibb.co/rwGq2p6/notion-penghou.png" alt="penghouPengHou彭侯"><div class="text">彭侯</div></a>
+  <!--应龙-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-ying-long/home" class="overlay"><img src="https://i.ibb.co/9gspP4C/notion2.png" alt="yinglongYingLong应龙"><div class="text">应龙</div></a>
+  <!--玄武-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-xuan-wu/home" class="overlay"><img src="https://i.ibb.co/ysySXJp/Untitled-6.png" alt="xuanwuXuanWu玄武"><div class="text">玄武</div></a>
+  <!--鴆-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-zhen/home" class="overlay"><img src="https://i.ibb.co/QmF3mKC/Notion-zhen-copy.png" alt="zhenZhen鴆"><div class="text">鴆</div></a>
+  <!--疫鬼-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-yi-gui/home" class="overlay"><img src="https://i.ibb.co/x33J1h8/notion-yigui.png" alt="yiguiYiGui疫鬼"><div class="text">疫鬼</div></a>
+  <!--雍和-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-yong-he/home" class="overlay"><img src="https://i.ibb.co/1qWz5dJ/notion-4.png" alt="yongheYongHe雍和"><div class="text">雍和</div></a>
+  <!--猰貐-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-ya-yu/home" class="overlay"><img src="https://i.ibb.co/xS9VJfW/notion-xuan-wu.png" alt="yayuYaYu猰貐"><div class="text">猰貐</div></a>
+  <!--颙-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-yong/home" class="overlay"><img src="https://i.ibb.co/wr21c2C/unnamed-4.jpg" alt="yongYong颙"><div class="text">颙</div></a>
+  <!--玉兔-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-yue-tu/home" class="overlay"><img src="https://i.ibb.co/zJwV0MV/Untitled-7.png" alt="yutuYuTu玉兔"><div class="text">玉兔</div></a>
+  <!--狐精-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-hu-jing/home" class="overlay"><img src="https://i.ibb.co/QmBDtXC/Untitled-8.png" alt="hujingHuJing狐精"><div class="text">狐精</div></a>
+  <!--夔-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-chong-ming-niao/home" class="overlay"><img src="https://i.ibb.co/yhMH93X/notion-kui.png" alt="kuiKui夔"><div class="text">夔</div></a>
+  <!--重明鸟-->
+  <a href="https://sites.google.com/student.hci.edu.sg/pw2023-info-chong-ming-niao/home" class="overlay"><img src="https://i.ibb.co/qJF12pY/Notion-Chong-Ming-Niao.png" alt="chongmingniaoChongMingNiao重明鸟"><div class="text">重明鸟</div></a>
+
+  <img src="image3.jpg" alt="A delicious pizza">
+  <img src="image4.jpg" alt="A stunning mountain view">
+</div>
+
+
+<script>
+const search = document.querySelector('#search');
+const images = document.querySelectorAll('#gallery img');
+
+search.addEventListener('input', () => {
+  const query = search.value.toLowerCase();
+  
+  images.forEach(image => {
+    const alt = image.getAttribute('alt').toLowerCase();
+    
+    if (alt.includes(query)) {
+      image.style.display = 'block';
+    } else {
+      image.style.display = 'none';
+    }
+  });
+});
+</script>
+</html>
