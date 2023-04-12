@@ -88,10 +88,10 @@ body {
 
   <h1>唤醒神兽</h1>
   <div class="container">
-    <a href="/chat.html"><button class="button">你问我答</button></a>
-    <a href="/search.html"><button class="button">神兽宝典</button></a>
-    <a href="/game.html"><button class="button">过关斩将</button></a>
-    <a href="subpage4.html"><button class="button">拓展练习</button></a>
+    <a href="/main/chat.html"><button class="button">你问我答</button></a>
+    <a href="/main/search.html"><button class="button">神兽宝典</button></a>
+    <a href="/main/game.html"><button class="button">过关斩将</button></a>
+    <a href="/main/subpage4.html"><button class="button">拓展练习</button></a>
   </div>
 <p id="ping-time">999 ms</p>
     <script>
@@ -107,7 +107,7 @@ body {
             pingTimeParagraph.innerText = `${pingTime-150} ms`;
           }
         };
-        xhr.open('GET', 'https://pw-mythical-creatures.000webhostapp.com/', true);
+        xhr.open('GET', 'https://pwcreatures.vercel.app/', true);
         xhr.send();
       }
 
