@@ -104,7 +104,7 @@ body {
           if (xhr.readyState === XMLHttpRequest.DONE) {
             const endTime = new Date().getTime();
             const pingTime = endTime - startTime;
-            pingTimeParagraph.innerText = `${pingTime-150} ms`;
+            pingTimeParagraph.innerText = `${pingTime} ms`;
           }
         };
         xhr.open('GET', 'https://pwcreatures.vercel.app/', true);
