@@ -1,27 +1,56 @@
+<meta name="description" content="Example meta description">
+<meta name="keywords" content="example, keywords, here">
+<link rel="canonical" href="https://example.com/page">
 <meta name="robots" content="index, follow">
-<meta name="googlebot" content="index, follow">
-<meta name="google" content="nositelinkssearchbox">
-<meta name="google" content="notranslate">
+<meta property="og:title" content="Example OG title">
+<meta property="og:description" content="Example OG description">
+<meta property="og:image" content="https://example.com/image.jpg">
+<meta name="twitter:title" content="Example Twitter title">
+<meta name="twitter:description" content="Example Twitter description">
+<meta name="twitter:image" content="https://example.com/image.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="referrer" content="no-referrer-when-downgrade">
 <meta name="format-detection" content="telephone=no">
-<meta name="language" content="English">
-<meta name="geo.region" content="SG">
-<meta name="geo.placename" content="Singapore">
-<meta name="geo.position" content="1.3521, 103.8198">
-<meta name="ICBM" content="1.3521, 103.8198">
-<meta property="og:title" content="Singapore Education System Inclusivity - Efforts, Policies, Challenges">
-<meta property="og:description" content="Explore the inclusivity of Singapore's education system. Learn about the efforts made towards inclusivity, policies and initiatives in place, challenges faced, and the need for equitable opportunities for all students.">
-<meta property="og:image" content="https://example.com/images/singapore-education-inclusivity.jpg">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://example.com/singapore-education-inclusivity">
-<meta property="og:site_name" content="Example Website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Singapore Education System Inclusivity - Efforts, Policies, Challenges">
-<meta name="twitter:description" content="Explore the inclusivity of Singapore's education system. Learn about the efforts made towards inclusivity, policies and initiatives in place, challenges faced, and the need for equitable opportunities for all students.">
-<meta name="twitter:image" content="https://example.com/images/singapore-education-inclusivity.jpg">
-<meta name="twitter:url" content="https://example.com/singapore-education-inclusivity">
+<meta name="msapplication-TileColor" content="#ffffff">
+<link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
+<meta name="author" content="Your Name">
+<meta name="revisit-after" content="7 days">
+<meta name="rating" content="General">
+<meta name="geo.region" content="US-CA">
+<meta name="geo.placename" content="Los Angeles">
+<meta name="geo.position" content="34.052235,-118.243683">
+<meta name="ICBM" content="34.052235,-118.243683">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://example.com">
+<meta name="og:site_name" content="Example Site Name">
+<meta name="og:locale" content="en_US">
+<meta name="og:article:published_time" content="2023-04-18T12:34:56Z">
+<meta name="og:article:modified_time" content="2023-04-18T12:34:56Z">
+<meta name="og:article:section" content="Example Section">
+<meta name="og:article:tag" content="Example Tag">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@example">
-<link rel="canonical" href="https://example.com/singapore-education-inclusivity">
-<link rel="alternate" hreflang="en-sg" href="https://example.com/singapore-education-inclusivity">
-<link rel="alternate" hreflang="en" href="https://example.com/singapore-education-inclusivity">
-<link rel="alternate" hreflang="x-default" href="https://example.com/singapore-education-inclusivity">
-<meta name="csrf-token" content="your_csrf_token_here">
+<meta name="twitter:creator" content="@yourhandle">
+<!-- Additional Meta Properties (Customized as per your requirements) -->
+<meta name="distribution" content="global">
+<meta name="target" content="all">
+<meta name="audience" content="all">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="url=no">
+<meta name="googlebot" content="index, follow">
+<meta name="googlebot-news" content="index, follow">
+<meta name="googlebot-news_keywords" content="example, keywords">
+<meta name="googlebot-video" content="index, follow">
+<meta name="googlebot-image" content="index, follow">
+<meta name="googlebot-media" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta name="apple-itunes-app" content="app-id=APP_ID">
+<meta name="google-site-verification" content="verification_code">
+<meta name="yandex-verification" content="verification_code">
+<meta name="msvalidate.01" content="verification_code">
+<meta name="alexaVerifyID" content="verification_code">
+<meta name="p:domain_verify" content="verification_code">
+<meta name="norton-safeweb-site-verification" content="verification_code">
