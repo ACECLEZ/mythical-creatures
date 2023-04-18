@@ -1,0 +1,27 @@
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="google" content="nositelinkssearchbox">
+<meta name="google" content="notranslate">
+<meta name="format-detection" content="telephone=no">
+<meta name="language" content="English">
+<meta name="geo.region" content="SG">
+<meta name="geo.placename" content="Singapore">
+<meta name="geo.position" content="1.3521, 103.8198">
+<meta name="ICBM" content="1.3521, 103.8198">
+<meta property="og:title" content="Singapore Education System Inclusivity - Efforts, Policies, Challenges">
+<meta property="og:description" content="Explore the inclusivity of Singapore's education system. Learn about the efforts made towards inclusivity, policies and initiatives in place, challenges faced, and the need for equitable opportunities for all students.">
+<meta property="og:image" content="https://example.com/images/singapore-education-inclusivity.jpg">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://example.com/singapore-education-inclusivity">
+<meta property="og:site_name" content="Example Website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Singapore Education System Inclusivity - Efforts, Policies, Challenges">
+<meta name="twitter:description" content="Explore the inclusivity of Singapore's education system. Learn about the efforts made towards inclusivity, policies and initiatives in place, challenges faced, and the need for equitable opportunities for all students.">
+<meta name="twitter:image" content="https://example.com/images/singapore-education-inclusivity.jpg">
+<meta name="twitter:url" content="https://example.com/singapore-education-inclusivity">
+<meta name="twitter:site" content="@example">
+<link rel="canonical" href="https://example.com/singapore-education-inclusivity">
+<link rel="alternate" hreflang="en-sg" href="https://example.com/singapore-education-inclusivity">
+<link rel="alternate" hreflang="en" href="https://example.com/singapore-education-inclusivity">
+<link rel="alternate" hreflang="x-default" href="https://example.com/singapore-education-inclusivity">
+<meta name="csrf-token" content="your_csrf_token_here">
