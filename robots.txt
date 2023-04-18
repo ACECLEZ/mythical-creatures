@@ -1,3 +1,3 @@
 User-Agent: *
 Allow: /
-Sitemap: https://pwcreatures.vercel.app/manifest-data/sitemap1.1.xml
+Sitemap: https://pwcreatures.vercel.app/manifest-data/sitemap1.xml
