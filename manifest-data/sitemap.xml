@@ -2,38 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pwcreatures.vercel.app/</loc>
-    <lastmod>2023-04-12</lastmod>
+    <lastmod>2023-04-18T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://pwcreatures.vercel.app/about</loc>
-    <lastmod>2023-04-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://pwcreatures.vercel.app/search.html</loc>
+    <lastmod>2023-04-18T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pwcreatures.vercel.app/contact</loc>
-    <lastmod>2023-04-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://pwcreatures.vercel.app/game.html</loc>
+    <lastmod>2023-04-18T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pwcreatures.vercel.app/chat.html</loc>
+    <lastmod>2023-04-18T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pwcreatures.vercel.app/pract.html</loc>
+    <lastmod>2023-04-18T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://pwcreatures.vercel.app/gallery</loc>
-    <lastmod>2023-04-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://pwcreatures.vercel.app/main/chat.html</loc>
-    <lastmod>2023-04-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://pwcreatures.vercel.app/main/search.html</loc>
-    <lastmod>2023-04-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
 </urlset>
