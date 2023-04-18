@@ -150,6 +150,15 @@
 </div>
 <p id="ping-time">999 ms</p>
 <script>
+        
+        
+            var image = new Image();
+    image.src = 'https://i.ibb.co/xY93S6R/unnamed-6-1.png';
+    image.onload = function() {
+      document.body.style.backgroundImage = 'url(' + image.src + ')';
+    };
+        
+        
     const pingTimeParagraph = document.getElementById('ping-time');
 
     function ping() {
