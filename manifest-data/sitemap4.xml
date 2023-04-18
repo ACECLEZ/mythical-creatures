@@ -7,13 +7,13 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://pwcreatures.vercel.app/search.html</loc>
+    <loc>https://pwcreatures.vercel.app/main/search.html</loc>
     <lastmod>2023-04-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pwcreatures.vercel.app/chat.html</loc>
+    <loc>https://pwcreatures.vercel.app/main/chat.html</loc>
     <lastmod>2023-04-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
