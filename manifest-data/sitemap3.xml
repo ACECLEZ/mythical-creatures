@@ -13,21 +13,9 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pwcreatures.vercel.app/game.html</loc>
-    <lastmod>2023-04-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://pwcreatures.vercel.app/chat.html</loc>
     <lastmod>2023-04-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pwcreatures.vercel.app/pract.html</loc>
-    <lastmod>2023-04-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>
