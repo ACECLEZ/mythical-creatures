@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pwcreatures.vercel.app/</loc>
-    <lastmod>2023-04-18</lastmod>
+    <lastmod>2023-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://pwcreatures.vercel.app/main/chat.html</loc>
-    <lastmod>2023-04-18</lastmod>
+    <lastmod>2023-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pwcreatures.vercel.app/main/search.html</loc>
-    <lastmod>2023-04-18</lastmod>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pwcreatures.vercel.app/main/pract/test.html</loc>
+    <lastmod>2023-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
