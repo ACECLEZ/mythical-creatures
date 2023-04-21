@@ -6,6 +6,7 @@
   <style>
     .question {
       margin-bottom: 10px;
+      display: none; /* Hide questions by default */
     }
   </style>
 </head>
@@ -14,8 +15,8 @@
   <div id="questionnaire">
     <h1>Questionnaire</h1>
     <form id="questionForm">
-      <div id="questionsContainer">
-        <!-- Questions will be dynamically added here -->
+      <div id="questionContainer">
+        <!-- Current question will be dynamically added here -->
       </div>
       <button type="submit">Submit</button>
     </form>
@@ -23,7 +24,7 @@
 
   <script>
     // Load questions and answers from JSON via link
-    fetch('https://pwcreatures.vercel.app/main/pract/info.json')
+    fetch('https://example.com/questions.json')
       .then(response => response.json())
       .then(data => {
         // Create a new instance of the Questionnaire class
@@ -34,8 +35,8 @@
           questionnaire.addQuestion(question.question, question.answers, question.correctAnswer);
         });
 
-        // Render the questionnaire
-        questionnaire.render();
+        // Render the first question
+        questionnaire.renderNextQuestion();
       })
       .catch(error => {
         console.error('Failed to load questions:', error);
@@ -45,28 +46,30 @@
     class Questionnaire {
       constructor() {
         this.questions = [];
+        this.currentQuestionIndex = 0;
       }
 
       addQuestion(question, answers, correctAnswer) {
         this.questions.push({ question, answers, correctAnswer });
       }
 
-      render() {
-        const questionsContainer = document.getElementById('questionsContainer');
-        questionsContainer.innerHTML = '';
+      renderNextQuestion() {
+        const questionContainer = document.getElementById('questionContainer');
+        questionContainer.innerHTML = '';
 
-        this.questions.forEach((question, index) => {
-          const questionDiv = document.createElement('div');
-          questionDiv.className = 'question';
-          const randomAnswers = this.shuffleArray(question.answers);
-          questionDiv.innerHTML = `
-            <label for="question${index}">${question.question}</label>
-            <select id="question${index}" name="question${index}">
-              ${randomAnswers.map(answer => `<option value="${answer}">${answer}</option>`).join('')}
-            </select>
-          `;
-          questionsContainer.appendChild(questionDiv);
-        });
+        const question = this.questions[this.currentQuestionIndex];
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question';
+        const randomAnswers = this.shuffleArray(question.answers);
+        questionDiv.innerHTML = `
+          <label for="question">${question.question}</label>
+          <select id="question" name="question">
+            ${randomAnswers.map(answer => `<option value="${answer}">${answer}</option>`).join('')}
+          </select>
+        `;
+        questionContainer.appendChild(questionDiv);
+
+        this.currentQuestionIndex++;
       }
 
       shuffleArray(array) {
@@ -85,25 +88,23 @@
 
       // Retrieve and process form data
       const formData = new FormData(questionForm);
-      const answers = [];
-      for (let i = 0; i < questionForm.elements.length; i++) {
-        const element = questionForm.elements[i];
-        if (element.tagName === 'SELECT') {
-          answers.push(element.value);
-        }
+      const selectedAnswer = formData.get('question');
+
+      // Check answer against correct answer
+      const question = this.questions[this.currentQuestionIndex - 1];
+      if (question.correctAnswer === selectedAnswer) {
+        alert('Correct!');
+      } else {
+        alert('Incorrect!');
       }
 
-      // Check answers against correct answers
-      const score = this.questions.reduce((totalScore, question, index) => {
-        if (question.correctAnswer === answers[index]) {
-          return totalScore + 1;
-        } else {
-          return totalScore;
-        }
-      }, 0);
-
-      // Display the score
-      alert(`Your score: ${score}/${this.questions.length}`);
+      // Render the next question or display score if all questions are answered
+      if (this.currentQuestionIndex < this.questions.length) {
+        this.renderNextQuestion();
+      } else {
+        const score = this.calculateScore();
+        alert(`Your score: ${score}/${this.questions.length}`);
+      }
     });
   </script>
 </body>
