@@ -9,80 +9,82 @@
   <ul id="options"></ul>
   <button onclick="submitAnswer()">Submit</button>
   <script>
+document.addEventListener('DOMContentLoaded', function() {
   let currentQuestionIndex = 0;
-let questions = [];
+  let questions = [];
 
-// Fetch questions from JSON file
-fetch('https://pwcreatures.vercel.app/main/pract/info.json')
-  .then(response => response.json())
-  .then(data => {
-    questions = data.questions;
-    showQuestion();
-  })
-  .catch(error => console.error(error));
-
-function showQuestion() {
-  if (currentQuestionIndex < questions.length) {
-    const question = questions[currentQuestionIndex];
-    const questionElement = document.getElementById('question');
-    const optionsElement = document.getElementById('options');
-    
-    questionElement.textContent = question.question;
-    optionsElement.innerHTML = '';
-
-    // Shuffle options
-    const shuffledOptions = shuffleArray(question.options);
-    
-    // Create option elements
-    shuffledOptions.forEach(option => {
-      const li = document.createElement('li');
-      const radio = document.createElement('input');
-      radio.type = 'radio';
-      radio.name = 'option';
-      radio.value = option;
-      li.appendChild(radio);
-      li.appendChild(document.createTextNode(option));
-      optionsElement.appendChild(li);
-    });
-  }
-  else {
-    // End of quiz
-    document.getElementById('question').textContent = 'Quiz Complete';
-    document.getElementById('options').innerHTML = '';
-    document.getElementById('submit').disabled = true;
-  }
-}
-
-function submitAnswer() {
-  const selectedOption = document.querySelector('input[name="option"]:checked');
-  if (selectedOption) {
-    const selectedAnswer = selectedOption.value;
-    const correctAnswer = questions[currentQuestionIndex].correctAnswer;
-    const feedbackElement = document.createElement('p');
-    
-    if (selectedAnswer === correctAnswer) {
-      feedbackElement.textContent = 'Correct!';
-    } else {
-      feedbackElement.textContent = `Incorrect. The correct answer is ${correctAnswer}.`;
-    }
-
-    document.getElementById('options').appendChild(feedbackElement);
-    setTimeout(() => {
-      feedbackElement.remove();
-      currentQuestionIndex++;
+  // Fetch questions from JSON file
+  fetch('https://pwcreatures.vercel.app/main/pract/info.json')
+    .then(response => response.json())
+    .then(data => {
+      questions = data.questions;
       showQuestion();
-    }, 1000);
-  }
-}
+    })
+    .catch(error => console.error(error));
 
-// Shuffle an array using Fisher-Yates algorithm
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+  function showQuestion() {
+    if (currentQuestionIndex < questions.length) {
+      const question = questions[currentQuestionIndex];
+      const questionElement = document.getElementById('question');
+      const optionsElement = document.getElementById('options');
+
+      questionElement.textContent = question.question;
+      optionsElement.innerHTML = '';
+
+      // Shuffle options
+      const shuffledOptions = shuffleArray(question.options);
+
+      // Create option elements
+      shuffledOptions.forEach(option => {
+        const li = document.createElement('li');
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'option';
+        radio.value = option;
+        li.appendChild(radio);
+        li.appendChild(document.createTextNode(option));
+        optionsElement.appendChild(li);
+      });
+    } else {
+      // End of quiz
+      document.getElementById('question').textContent = 'Quiz Complete';
+      document.getElementById('options').innerHTML = '';
+      document.getElementById('submit').disabled = true;
+    }
   }
-  return array;
-}
+
+  function submitAnswer() {
+    const selectedOption = document.querySelector('input[name="option"]:checked');
+    if (selectedOption) {
+      const selectedAnswer = selectedOption.value;
+      const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+      const feedbackElement = document.createElement('p');
+
+      if (selectedAnswer === correctAnswer) {
+        feedbackElement.textContent = 'Correct!';
+      } else {
+        feedbackElement.textContent = `Incorrect. The correct answer is ${correctAnswer}.`;
+      }
+
+      document.getElementById('options').appendChild(feedbackElement);
+      setTimeout(() => {
+        feedbackElement.remove();
+        currentQuestionIndex++;
+        showQuestion();
+      }, 1000);
+    }
+  }
+
+  // Shuffle an array using Fisher-Yates algorithm
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+});
+
 
   </script>
 </body>
