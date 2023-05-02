@@ -1,0 +1,24 @@
+{
+  "questions": [
+    {
+      "question": "What is the capital of France?",
+      "options": ["Paris", "Berlin", "Rome", "Madrid"],
+      "answer": "Paris"
+    },
+    {
+      "question": "Who wrote the novel 'Pride and Prejudice'?",
+      "options": ["Emily Bronte", "Jane Austen", "Charlotte Bronte", "Agatha Christie"],
+      "answer": "Jane Austen"
+    },
+    {
+      "question": "What is the highest mountain in the world?",
+      "options": ["Mount Kilimanjaro", "Mount Everest", "Mount Fuji", "Mount Denali"],
+      "answer": "Mount Everest"
+    },
+    {
+      "question": "What is the smallest country in the world?",
+      "options": ["Monaco", "Vatican City", "San Marino", "Liechtenstein"],
+      "answer": "Vatican City"
+    }
+  ]
+}
