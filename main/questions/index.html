@@ -466,7 +466,7 @@ let questions;
 const day = (new Date()).getDay();
 
 if (day === 0) { // Sunday
-  fetch('https://pwcreatures.vercel.app/main/questions/sunday.json')
+  fetch('https://pwcreatures.vercel.app/main/questions/stack/sunday.json')
     .then(response => response.json())
     .then(data => {
       questions = data;
@@ -474,7 +474,7 @@ if (day === 0) { // Sunday
     })
     .catch(error => console.error(error));
 } else if (day === 1) { // Monday
-  fetch('https://pwcreatures.vercel.app/main/questions/monday.json')
+  fetch('https://pwcreatures.vercel.app/main/questions/stack/monday.json')
     .then(response => response.json())
     .then(data => {
       questions = data;
@@ -482,7 +482,7 @@ if (day === 0) { // Sunday
     })
     .catch(error => console.error(error));
 } else if (day === 2) { // Tuesday
-  fetch('https://pwcreatures.vercel.app/main/questions/tuesday.json')
+  fetch('https://pwcreatures.vercel.app/main/questions/stack/tuesday.json')
     .then(response => response.json())
     .then(data => {
       questions = data;
@@ -490,7 +490,7 @@ if (day === 0) { // Sunday
     })
     .catch(error => console.error(error));
 } else if (day === 3) { // Wednesday
-  fetch('https://pwcreatures.vercel.app/main/questions/wednesday.json')
+  fetch('https://pwcreatures.vercel.app/main/questions/stack/wednesday.json')
     .then(response => response.json())
     .then(data => {
       questions = data;
@@ -498,7 +498,7 @@ if (day === 0) { // Sunday
     })
     .catch(error => console.error(error));
 } else if (day === 4) { // Thursday
-  fetch('https://pwcreatures.vercel.app/main/questions/thursday.json')
+  fetch('https://pwcreatures.vercel.app/main/questions/stack/thursday.json')
     .then(response => response.json())
     .then(data => {
       questions = data;
@@ -506,7 +506,7 @@ if (day === 0) { // Sunday
     })
     .catch(error => console.error(error));
 } else if (day === 5) { // Friday
-  fetch('https://pwcreatures.vercel.app/main/questions/friday.json')
+  fetch('https://pwcreatures.vercel.app/main/questions/stack/friday.json')
     .then(response => response.json())
     .then(data => {
       questions = data;
@@ -514,7 +514,7 @@ if (day === 0) { // Sunday
     })
     .catch(error => console.error(error));
 } else if (day === 6) { // Saturday
-  fetch('https://pwcreatures.vercel.app/main/questions/saturday.json')
+  fetch('https://pwcreatures.vercel.app/main/questions/stack/saturday.json')
     .then(response => response.json())
     .then(data => {
       questions = data;
