@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #333333;
+  color: #ffffff;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #aaaaaa;
+}
+
+button[type="submit"],
+button[type="reset"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333333;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover,
+button[type="reset"]:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+#reset-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333333;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 10px;
+    display: block;
+  margin: auto;
+}
+
+#reset-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+	</style>
+</head>
+<body>
+	<h1>Login Form</h1>
+	<form id="password-form" autocomplete="off">
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username" autocomplete="off" required>
+		<br>
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" autocomplete="off" required>
+		<br>
+		<button type="submit">Set Password</button>
+        <br>
+	</form>
+	<form id="login-form" class="hidden" autocomplete="off">
+		<label for="login-username">Username:</label>
+		<input type="text" id="login-username" name="login-username" autocomplete="off" required>
+		<br>
+		<label for="login-password">Password:</label>
+		<input type="password" id="login-password" name="login-password" autocomplete="off" required>
+		<br>
+		<button type="submit">Login</button>
+	</form>
+	<button id="reset-button">Reset Password</button>
+
+</body>
+
+
+	<script>
+    const passwordForm = document.getElementById('password-form');
+const loginForm = document.getElementById('login-form');
+const resetButton = document.getElementById('reset-button');
+
+// Check if there is a saved username and password in local storage
+if (localStorage.getItem('username') && localStorage.getItem('password')) {
+  // Hide the password form
+  passwordForm.classList.add('hidden');
+
+  // Show the login form
+  loginForm.classList.remove('hidden');
+}
+
+// Listen for the password form submission
+passwordForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  // Get the username and password from the form
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  // Save the username and password to local storage
+  localStorage.setItem('username', username);
+  localStorage.setItem('password', password);
+
+  // Hide the password form
+  passwordForm.classList.add('hidden');
+
+  // Show the login form
+  loginForm.classList.remove('hidden');
+});
+
+// Listen for the login form submission
+loginForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  // Get the username and password from the form
+  const username = document.getElementById('login-username').value;
+  const password = document.getElementById('login-password').value;
+
+  // Get the saved username and password from local storage
+  const savedUsername = localStorage.getItem('username');
+  const savedPassword = localStorage.getItem('password');
+
+  // Check if the username and password match the saved values
+  if (username === savedUsername && password === savedPassword) {
+    alert('Login successful!');
+  } else {
+    alert('Invalid username or password!');
+  }
+});
+
+// Listen for the reset button click
+resetButton.addEventListener('click', (event) => {
+  // Clear the saved username and password from local storage
+  localStorage.removeItem('username');
+  localStorage.removeItem('password');
+
+  // Show the password form
+  passwordForm.classList.remove('hidden');
+
+  // Hide the login form
+  loginForm.classList.add('hidden');
+});
+
+</script>
+</body>
+</html>
+
