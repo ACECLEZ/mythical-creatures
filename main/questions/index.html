@@ -461,25 +461,28 @@ footer button.show{
 
 <script>
 /*get different question everyday*/
-// Get the current date and day of the week
-let today = new Date();
-let dayOfWeek = today.getDay();
 
-// Convert the day of the week to a string that matches your file naming convention
-let daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-let currentDay = daysOfWeek[dayOfWeek];
+    let questions;
+const day = (new Date()).getDay();
 
-// Load the questions data for the current day
-let filename = currentDay + ".json";
-$.ajax({
-  url: filename,
-  dataType: 'json',
-  async: false,
-  success: function(data) {
-    let questions = data;
-    console.log(questions);
-  }
-});
+if (day === 0) { // Sunday
+  questions = require('./sunday-questions.json');
+} else if (day === 1) { // Monday
+  questions = require('./monday-questions.json');
+} else if (day === 2) { // Tuesday
+  questions = require('./tuesday-questions.json');
+} else if (day === 3) { // Wednesday
+  questions = require('./wednesday-questions.json');
+} else if (day === 4) { // Thursday
+  questions = require('./thursday-questions.json');
+} else if (day === 5) { // Friday
+  questions = require('./friday-questions.json');
+} else if (day === 6) { // Saturday
+  questions = require('./saturday-questions.json');
+}
+
+console.log(questions); // Log the retrieved questions
+
 
 /*end*/
     
