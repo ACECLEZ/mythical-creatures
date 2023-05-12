@@ -80,15 +80,21 @@ button:hover {
   </style>
 </head>
 <body>
-  <div id="header">
-    积分: <span id="points">0</span>
-    <button onclick="resetLocalStorage()" id="resetButton">重置</button>
-  </div>
-  <h1>积分银行</h1>
-  <input type="text" id="redemptionCode" autocomplete="off" placeholder="在此填写兑换码">
-  <button id="submitButton" onclick="checkRedemptionCode()">提交</button>
-  <div id="message"></div>
+<div id="header">
+  积分: <span id="points">0</span>
+  <button onclick="resetLocalStorage()" id="resetButton">重置</button>
+</div>
+<h1>积分银行</h1>
+<input type="text" id="redemptionCode" autocomplete="off" placeholder="在此填写兑换码">
+<button id="submitButton" onclick="checkRedemptionCode()">提交</button>
+<div id="message"></div>
+
 <script>
+function updatePoints() {
+  var points = parseInt(localStorage.getItem("points")) || 0;
+  $("#points").text(points);
+}
+
 function checkRedemptionCode() {
   var redemptionCode = $("#redemptionCode").val(); 
   if (redemptionCode === "/admin") {
@@ -98,7 +104,7 @@ function checkRedemptionCode() {
 
   var usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
   if (usedCodes.includes(redemptionCode)) {
-    $("#message").text("兑换码以被使用或过期。");
+    $("#message").text("兑换码已被使用或过期。❌used code");
     return;
   }
 
@@ -107,15 +113,12 @@ function checkRedemptionCode() {
     dataType: "json",
     success: function(data) {
       if (data.redemptionCodes.includes(redemptionCode)) {
-
         $("#message").text("兑换成功！");
-
 
         var points = parseInt(localStorage.getItem("points")) || 0;
         points += 1;
         localStorage.setItem("points", points);
         $("#points").text(points);
-
 
         usedCodes.push(redemptionCode);
         localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
@@ -135,7 +138,13 @@ function resetLocalStorage() {
   localStorage.clear();
   location.reload();
 }
-//by enter
+
+// On page load
+$(document).ready(function() {
+  updatePoints();
+});
+
+// by Enter key press
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("redemptionCode").addEventListener("keydown", function(event) {
     if (event.keyCode === 13) { // 13 is the key code for Enter key
@@ -144,8 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
-
-  
 </script>
+
 </body>
 </html>
