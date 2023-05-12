@@ -105,7 +105,7 @@ function checkRedemptionCode() {
 
         localStorage.setItem(redemptionCode, "You redeemed this code.");
       } else {
-        $("#message").text("I兑换码以被使用或过期。❌code not found");
+        $("#message").text("兑换码不存在。❌code not found");
       }
     },
     error: function() {
