@@ -105,11 +105,11 @@ function checkRedemptionCode() {
 
         localStorage.setItem(redemptionCode, "You redeemed this code.");
       } else {
-        $("#message").text("Invalid redemption code. Please try again.");
+        $("#message").text("I兑换码以被使用或过期。❌code not found");
       }
     },
     error: function() {
-      $("#message").text("Error occurred while loading redemption codes. Please try again later.");
+      $("#message").text("网络波动。❌internet error");
     }
   });
 }
