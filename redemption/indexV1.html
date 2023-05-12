@@ -119,20 +119,15 @@ function resetLocalStorage() {
   location.reload();
 }
 //by enter
+document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("redemptionCode").addEventListener("keydown", function(event) {
-  if (event.keyCode === 13) { // 13 is the key code for Enter key
-    event.preventDefault(); // Prevent the default form submission behavior
-    checkRedemptionCode(); // Call the submit button's click event handler
-  }
+    if (event.keyCode === 13) { // 13 is the key code for Enter key
+      event.preventDefault(); // Prevent the default form submission behavior
+      document.getElementById("submitButton").click(); // Trigger the click event of the submit button
+    }
+  });
 });
 
-function checkRedemptionCode() {
-  // Rest of your code for checking the redemption code
-}
-
-function resetLocalStorage() {
-  // Rest of your code for resetting the local storage
-}
   
 </script>
 </body>
