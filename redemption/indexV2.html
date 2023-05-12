@@ -150,7 +150,7 @@ $(document).ready(function() {
     points = 0;
     localStorage.setItem("points", points);
     $("#points").text(points);
-    $("#message").text("分数经过第三方未经允许修改，已被归零处理。若有疑问，请联系awakenmythicalcreatures@gmail.com");
+    $("#message").text("分数经过第三方非法修改，已被归零处理。若有疑问，请联系awakenmythicalcreatures@gmail.com");
   } else {
     $("#points").text(points);
   }
@@ -165,6 +165,16 @@ document.addEventListener("DOMContentLoaded", function() {
       event.preventDefault(); // Prevent the default form submission behavior
       document.getElementById("submitButton").click(); // Trigger the click event of the submit button
     }
+           //test block
+             if (points > usedCodes.length) {
+    // Illegal modification detected
+    points = 0;
+    localStorage.setItem("points", points);
+    $("#points").text(points);
+    $("#message").text("分数经过第三方非法修改，已被归零处理。若有疑问，请联系awakenmythicalcreatures@gmail.com");
+  }
+           //end test
+           
   });
 });
 </script>
