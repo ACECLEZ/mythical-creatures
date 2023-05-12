@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redemption Website</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Function to check the redemption code
+    function checkRedemptionCode() {
+      var redemptionCode = $("#redemptionCode").val(); // Get the redemption code from the input field
+
+      // Check if the code has already been used
+      var usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
+      if (usedCodes.includes(redemptionCode)) {
+        $("#message").text("This redemption code has already been used.");
+        return;
+      }
+
+      // Make an AJAX request to check the redemption code
+      $.ajax({
+        url: "https://pwcreatures.vercel.app/redemption/codes.json", // URL of the JSON file
+        dataType: "json",
+        success: function(data) {
+          if (data.redemptionCodes.includes(redemptionCode)) {
+            // Show success message
+            $("#message").text("Success! Your redemption code is valid.");
+
+            // Update and display the points count
+            var points = parseInt(localStorage.getItem("points")) || 0;
+            points += 1;
+            localStorage.setItem("points", points);
+            $("#points").text(points);
+
+            // Add the code to the used codes list
+            usedCodes.push(redemptionCode);
+            localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
+
+            // Store a message for the used code
+            localStorage.setItem(redemptionCode, "You redeemed this code.");
+          } else {
+            // Show error message
+            $("#message").text("Invalid redemption code. Please try again.");
+          }
+        },
+        error: function() {
+          // Show error message if the JSON file fails to load
+          $("#message").text("Error occurred while loading redemption codes. Please try again later.");
+        }
+      });
+    }
+
+    // Function to reset the local storage
+    function resetLocalStorage() {
+      localStorage.clear();
+      location.reload();
+    }
+  </script>
+  <style>
+    /* CSS styling for the redemption website */
+    #header {
+      text-align: right;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    Points: <span id="points">0</span>
+    <button onclick="resetLocalStorage()">Reset</button>
+  </div>
+  <h1>Redemption Website</h1>
+  <input type="text" id="redemptionCode" placeholder="Enter redemption code">
+  <button onclick="checkRedemptionCode()">Submit</button>
+  <div id="message"></div>
+</body>
+</html>
