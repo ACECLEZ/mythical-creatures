@@ -1,79 +1,155 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Redemption Website</title>
+  <title>唤醒神兽-积分银行</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    // Function to check the redemption code
-    function checkRedemptionCode() {
-      var redemptionCode = $("#redemptionCode").val(); // Get the redemption code from the input field
-
-      // Check if the code has already been used
-      var usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
-      if (usedCodes.includes(redemptionCode)) {
-        $("#message").text("This redemption code has already been used.");
-        return;
-      }
-
-      // Make an AJAX request to check the redemption code
-      $.ajax({
-        url: "https://pwcreatures.vercel.app/redemption/codes.json", // URL of the JSON file
-        dataType: "json",
-        success: function(data) {
-          if (data.redemptionCodes.includes(redemptionCode)) {
-            // Show success message
-            $("#message").text("Success! Your redemption code is valid.");
-
-            // Update and display the points count
-            var points = parseInt(localStorage.getItem("points")) || 0;
-            points += 1;
-            localStorage.setItem("points", points);
-            $("#points").text(points);
-
-            // Add the code to the used codes list
-            usedCodes.push(redemptionCode);
-            localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
-
-            // Store a message for the used code
-            localStorage.setItem(redemptionCode, "You redeemed this code.");
-          } else {
-            // Show error message
-            $("#message").text("Invalid redemption code. Please try again.");
-          }
-        },
-        error: function() {
-          // Show error message if the JSON file fails to load
-          $("#message").text("Error occurred while loading redemption codes. Please try again later.");
-        }
-      });
-    }
-
-    // Function to reset the local storage
-    function resetLocalStorage() {
-      localStorage.clear();
-      location.reload();
-    }
-  </script>
+  
   <style>
-    /* CSS styling for the redemption website */
+
+   body {
+      background-color: #333;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
     #header {
+      background-color: #000;
+      padding: 10px;
       text-align: right;
+    }
+
+    #points {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #resetButton {
+      display: none;
+    }
+
+    button {
+      background-color: #000;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 10px 20px; /* Increase padding for larger button */
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      padding: 15px; /* Increase padding for larger text field */
+      font-size: 16px;
+      border: none;
+      background-color: #666;
+      color: #fff;
+      width: 300px; /* Set a specific width for the text field */
+    }
+
+    button:hover {
+      background-color: #555;
     }
 
     #message {
       margin-top: 20px;
       font-weight: bold;
     }
+
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-input {
+      display: flex;
+      align-items: center;
+    }
+
+    .form-input input[type="text"] {
+      margin-right: 10px;
+    }
+    
+    #cont {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 55vh;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
   <div id="header">
-    Points: <span id="points">0</span>
-    <button onclick="resetLocalStorage()">Reset</button>
+    积分: <span id="points">0</span>
+    <button onclick="resetLocalStorage()" id="resetButton">重置</button>
   </div>
-  <h1>Redemption Website</h1>
-  <input type="text" id="redemptionCode" placeholder="Enter redemption code">
-  <button onclick="checkRedemptionCode()">Submit</button>
-  <div id="message"></div>
+  <h1>积分银行</h1><div id="cont">
+  <input type="text" id="redemptionCode" autocomplete="off" placeholder="在此填写兑换码">
+  <button onclick="checkRedemptionCode()">提交</button>
+  <div id="message"></div></div>
+<script>
+function checkRedemptionCode() {
+  var redemptionCode = $("#redemptionCode").val(); 
+  if (redemptionCode === "/admin") {
+    $("#resetButton").show();
+    return; 
+  }
+
+  var usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
+  if (usedCodes.includes(redemptionCode)) {
+    $("#message").text("兑换码以被使用或过期。");
+    return;
+  }
+
+  $.ajax({
+    url: "https://pwcreatures.vercel.app/redemption/codes.json", 
+    dataType: "json",
+    success: function(data) {
+      if (data.redemptionCodes.includes(redemptionCode)) {
+
+        $("#message").text("兑换成功！");
+
+
+        var points = parseInt(localStorage.getItem("points")) || 0;
+        points += 1;
+        localStorage.setItem("points", points);
+        $("#points").text(points);
+
+
+        usedCodes.push(redemptionCode);
+        localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
+
+        localStorage.setItem(redemptionCode, "You redeemed this code.");
+      } else {
+        $("#message").text("Invalid redemption code. Please try again.");
+      }
+    },
+    error: function() {
+      $("#message").text("Error occurred while loading redemption codes. Please try again later.");
+    }
+  });
+}
+
+function resetLocalStorage() {
+  localStorage.clear();
+  location.reload();
+}
+
+</script>
 </body>
 </html>
