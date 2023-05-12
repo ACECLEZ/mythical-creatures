@@ -118,7 +118,22 @@ function resetLocalStorage() {
   localStorage.clear();
   location.reload();
 }
+//by enter
+  document.getElementById("redemptionCode").addEventListener("keydown", function(event) {
+  if (event.keyCode === 13) { // 13 is the key code for Enter key
+    event.preventDefault(); // Prevent the default form submission behavior
+    checkRedemptionCode(); // Call the submit button's click event handler
+  }
+});
 
+function checkRedemptionCode() {
+  // Rest of your code for checking the redemption code
+}
+
+function resetLocalStorage() {
+  // Rest of your code for resetting the local storage
+}
+  
 </script>
 </body>
 </html>
