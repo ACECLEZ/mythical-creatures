@@ -385,7 +385,7 @@ button:active {
         var randomIndex = Math.floor(Math.random() * verificationCodes.length);
         var verificationCode = verificationCodes[randomIndex];
         navigator.clipboard.writeText(verificationCode);
-        alert('Please allow verification code to be pasted to clipboard. Verification code: ' + verificationCode + '\n\nThe code has been copied to the clipboard.');
+        alert('请记下兑换码，并尽快兑换商品。\n\n兑换码: ' + verificationCode + '\n\n兑换码将在 1 天后过期。');
       })
       .catch(error => {
         console.log('Error retrieving verification code:', error);
