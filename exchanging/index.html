@@ -25,6 +25,11 @@
 <div class="listing-section">
 
 <!--抽奖-->
+<div id="header">
+  <span id="header-text">积分: <span id="points">0</span></span>
+</div>
+
+
   <div class="product">
     <div class="image-box">
       <div class="images" id="image-1"></div>
@@ -66,6 +71,18 @@
 <!--end-->
 
 <style>
+
+#points {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+#header-text {
+color: #fff;
+  font-family: Arial, sans-serif;
+  }
+
 * {
   padding: 0;
   margin: 0;
@@ -357,8 +374,19 @@ button:active {
 .final-cart-total h3 {
   color: Black;
 }  
+
+#header {
+  background-color: #000;
+  padding: 10px;
+  text-align: right;
+}
 </style>
 <script>
+$(document).ready(function() {
+  var points = parseInt(localStorage.getItem("points")) || 0;
+  $("#points").text(points);
+});
+
        function shop() {
         window.open("https://forms.gle/kbg8sfzCFLoMffFP8");     
        }
