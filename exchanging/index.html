@@ -62,6 +62,7 @@
       <button type="button" name="item-3-button" id="item-3-button">Add to Cart</button>
     </div>
   </div>
+        <button name="shop" onlick="shop()">前往商店</button>
 <!--end-->
 
 <style>
@@ -358,6 +359,9 @@ button:active {
 }  
 </style>
 <script>
+       function shop() {
+        window.location.href = 'https://forms.gle/kbg8sfzCFLoMffFP8';     
+       }
   // Function to deduct points from localStorage
   function deductPoints(amount) {
     var points = localStorage.getItem('points');
@@ -381,8 +385,7 @@ button:active {
         var randomIndex = Math.floor(Math.random() * verificationCodes.length);
         var verificationCode = verificationCodes[randomIndex];
         navigator.clipboard.writeText(verificationCode);
-        alert('Verification code: ' + verificationCode + '\n\nThe code has been copied to the clipboard.');
-        window.location.href = 'https://forms.gle/kbg8sfzCFLoMffFP8';
+        alert('Please allow verification code to be pasted to clipboard. Verification code: ' + verificationCode + '\n\nThe code has been copied to the clipboard.');
       })
       .catch(error => {
         console.log('Error retrieving verification code:', error);
