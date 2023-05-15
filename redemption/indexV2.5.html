@@ -142,12 +142,15 @@ function resetLocalStorage() {
 
 $(document).ready(function() {
          //check if the opening of page is for checking illegal modifications
-           var previousURL = document.referrer;
+ var previousURL = document.referrer;
   var targetURL = "https://pwcreatures.vercel.app/exchanging/index.html";
   
-  if (previousURL === targetURL) {
-    window.close();//endl
-  }
+  setTimeout(function() {
+    if (previousURL === targetURL) {
+      window.close();
+    }
+  }, 3000);
+         //endl
          
   var points = parseInt(localStorage.getItem("points")) || 0;
   var usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
