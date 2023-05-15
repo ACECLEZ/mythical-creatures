@@ -354,7 +354,9 @@ button:active {
     fetch('https://pwcreatures.vercel.app/exchanging/verify.json')
       .then(response => response.json())
       .then(data => {
-        var verificationCode = data.code;
+        var verificationCodes = data.verificationCodes;
+        var randomIndex = Math.floor(Math.random() * verificationCodes.length);
+        var verificationCode = verificationCodes[randomIndex];
         navigator.clipboard.writeText(verificationCode);
         alert('Verification code: ' + verificationCode + '\n\nThe code has been copied to the clipboard.');
         window.location.href = 'https://forms.gle/kbg8sfzCFLoMffFP8';
@@ -376,7 +378,7 @@ button:active {
     }
   });
   
-    // Event listener for the Exchange button click
+  // Event listener for the Exchange button click
   document.getElementById('item-2-button').addEventListener('click', function() {
     var pointsToDeduct = 20;
     var pointsDeducted = deductPoints(pointsToDeduct);
