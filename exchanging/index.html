@@ -21,10 +21,12 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!--ITEMS FOR EXCHANGE TO BE IN THIS SECTION-->
 <div class="listing-section">
 
 <!--抽奖-->
+
 <div id="header">
   <span id="header-text">积分: <span id="points">0</span></span>
 </div>
@@ -382,10 +384,15 @@ button:active {
 }
 </style>
 <script>
-$(document).ready(function() {
-  var points = parseInt(localStorage.getItem("points")) || 0;
-  $("#points").text(points);
-});
+    function updatePoints() {
+      var points = parseInt(localStorage.getItem("points")) || 0;
+      $("#points").text(points);
+    }
+
+    $(document).ready(function() {
+      var points = parseInt(localStorage.getItem("points")) || 0;
+      $("#points").text(points);
+    });
 
        function shop() {
         window.open("https://forms.gle/kbg8sfzCFLoMffFP8");     
