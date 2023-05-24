@@ -28,19 +28,21 @@
     function handleSubmit(event) {
       event.preventDefault();
 
-      // Get the input field value
-      const inputField = document.getElementById("myInput");
-      const inputValue = inputField.value;
+      // Get the input field values
+      const emailInput = document.getElementById("emailInput").value;
+      const messageInput = document.getElementById("messageInput").value;
 
-      // Create a new document in the "inputs" collection
-      addDoc(collection(db, "inputs"), {
-        value: inputValue,
+      // Create a new document in the "email" collection
+      addDoc(collection(db, "email"), {
+        email: emailInput,
+        message: messageInput,
         timestamp: new Date()
       })
         .then(() => {
           console.log("Data successfully written to Firestore!");
-          // Clear the input field after successful submission
-          inputField.value = "";
+          // Clear the input fields after successful submission
+          document.getElementById("emailInput").value = "";
+          document.getElementById("messageInput").value = "";
         })
         .catch((error) => {
           console.error("Error writing data to Firestore: ", error);
@@ -50,7 +52,10 @@
 </head>
 <body>
   <form onsubmit="handleSubmit(event)">
-    <input type="text" id="myInput" placeholder="Enter your data" />
+    <label for="emailInput">Email:</label>
+    <input type="email" id="emailInput" placeholder="Enter your email" required><br><br>
+    <label for="messageInput">Message:</label>
+    <textarea id="messageInput" rows="4" placeholder="Enter your message" required></textarea><br><br>
     <button type="submit">Submit</button>
   </form>
 </body>
