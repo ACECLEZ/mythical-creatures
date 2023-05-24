@@ -1,62 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+  <title>Firebase Login Page</title>
+  <!-- Include the Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
 
+  <script>
     // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyBuCMb-HfSxjyiFu3IK4lYb5_F22o3twSA",
-      authDomain: "gacha-info.firebaseapp.com",
-      projectId: "gacha-info",
-      storageBucket: "gacha-info.appspot.com",
-      messagingSenderId: "1032505288963",
-      appId: "1:1032505288963:web:937ab5f31e2f606c376136",
-      measurementId: "G-5EV354CCJ5"
-    };
+const firebaseConfig = {
+  apiKey: "AIzaSyCo5wksPjXxJl_xHCE6H2dzcAl61cQsSLo",
+  authDomain: "pwc-hci-auth.firebaseapp.com",
+  projectId: "pwc-hci-auth",
+  storageBucket: "pwc-hci-auth.appspot.com",
+  messagingSenderId: "256590839307",
+  appId: "1:256590839307:web:7726580b25b63dbef8d10e",
+  measurementId: "G-37MV3CGKBS"
+};
 
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
-
-    // Function to handle form submission
-    function handleSubmit(event) {
-      event.preventDefault();
-
-      // Get the input field values
-      const emailInput = document.getElementById("emailInput").value;
-      const messageInput = document.getElementById("messageInput").value;
-
-      // Create a new document in the "email" collection
-      addDoc(collection(db, "email"), {
-        email: emailInput,
-        message: messageInput,
-        timestamp: new Date()
-      })
-        .then(() => {
-          console.log("Data successfully written to Firestore!");
-          // Clear the input fields after successful submission
-          document.getElementById("emailInput").value = "";
-          document.getElementById("messageInput").value = "";
-        })
-        .catch((error) => {
-          console.error("Error writing data to Firestore: ", error);
-        });
-    }
+    firebase.initializeApp(firebaseConfig);
   </script>
 </head>
 <body>
-  <form onsubmit="handleSubmit(event)">
-    <label for="emailInput">Email:</label>
-    <input type="email" id="emailInput" placeholder="Enter your email" required><br><br>
-    <label for="messageInput">Message:</label>
-    <textarea id="messageInput" rows="4" placeholder="Enter your message" required></textarea><br><br>
-    <button type="submit">Submit</button>
-  </form>
+  <h1>Firebase Login Page</h1>
+
+  <div id="login-form">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div id="signup-form">
+    <h2>Sign Up</h2>
+    <input type="email" id="signup-email" placeholder="Email"><br>
+    <input type="password" id="signup-password" placeholder="Password"><br>
+    <button onclick="signup()">Sign Up</button>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // User signed in
+          const user = userCredential.user;
+          console.log("Logged in:", user);
+          // Redirect or perform additional actions after login
+        })
+        .catch((error) => {
+          // Handle login errors
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error("Login Error:", errorCode, errorMessage);
+        });
+    }
+
+    function signup() {
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // User signed up
+          const user = userCredential.user;
+          console.log("Signed up:", user);
+          // Redirect or perform additional actions after signup
+        })
+        .catch((error) => {
+          // Handle signup errors
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error("Signup Error:", errorCode, errorMessage);
+        });
+    }
+  </script>
 </body>
 </html>
