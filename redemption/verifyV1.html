@@ -213,15 +213,16 @@ body {
   });
 });
 
-         $(document).ready(function() {
-         //check if the opening of page is for checking illegal modifications
- var previousURL = document.referrer;
+$(window).on('load', function() {
+  var previousURL = document.referrer;
   var targetURL = "https://pwcreatures.vercel.app/exchanging/index.html";
-  
+
   setTimeout(function() {
     if (previousURL === targetURL) {
       window.close();
     }
   }, 2000);
+});
+
                   
 </script>
