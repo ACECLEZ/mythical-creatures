@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+         <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="唤醒神兽积分银行，在此储蓄你的积分，兑换精美的礼品">
+<meta property="og:image" content="https://i.ibb.co/WDxBsPP/Whiteboard-3-removebg-preview-1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="唤醒神兽logo - mythical creatures - Mythical Creatures">
+
+    <link rel="icon" href="https://i.ibb.co/WDxBsPP/Whiteboard-3-removebg-preview-1.png" type="image/x-icon" alt="唤醒神兽logo - mythical creatures - Mythical Creatures">
+    <meta name="robots" content="index, follow">
+    <meta name="canonical" href="https://pwcreatures.vercel.app/">
+    <meta name="keywords" content="积分银行, 唤醒神兽, 神话生物, 神秘生物, 神兽网站, vercel, 神兽宝典, 你问我答, 拓展练习, 神兽, pw2023, PW2023, HCI, PWCreatures, pwc, pwcreatures">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+  <title>唤醒神兽-积分银行</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  
+<div id="loading-wrapper">
+  <div id="loading-text">效验积分中</div>
+  <div id="loading-content"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+body {
+  background-color: #222;
+}
+
+
+#loading-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+#loading-text {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #999;
+  width: 100px;
+  height: 30px;
+  margin: -7px 0 0 -45px;
+  text-align: center;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 20px;
+}
+
+#loading-content {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 170px;
+  height: 170px;
+  margin: -85px 0 0 -85px;
+  border: 3px solid #F00;
+}
+
+#loading-content:after {
+  content: "";
+  position: absolute;
+  border: 3px solid #0F0;
+  left: 15px;
+  right: 15px;
+  top: 15px;
+  bottom: 15px;
+}
+
+#loading-content:before {
+  content: "";
+  position: absolute;
+  border: 3px solid #00F;
+  left: 5px;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+}
+
+#loading-content {
+  border: 3px solid transparent;
+  border-top-color: #4D658D;
+  border-bottom-color: #4D658D;
+  border-radius: 50%;
+  -webkit-animation: loader 2s linear infinite;
+  -moz-animation: loader 2s linear infinite;
+  -o-animation: loader 2s linear infinite;
+  animation: loader 2s linear infinite;
+}
+
+#loading-content:before {
+  border: 3px solid transparent;
+  border-top-color: #D4CC6A;
+  border-bottom-color: #D4CC6A;
+  border-radius: 50%;
+  -webkit-animation: loader 3s linear infinite;
+    -moz-animation: loader 2s linear infinite;
+  -o-animation: loader 2s linear infinite;
+  animation: loader 3s linear infinite;
+}
+
+#loading-content:after {
+  border: 3px solid transparent;
+  border-top-color: #84417C;
+  border-bottom-color: #84417C;
+  border-radius: 50%;
+  -webkit-animation: loader 1.5s linear infinite;
+  animation: loader 1.5s linear infinite;
+    -moz-animation: loader 2s linear infinite;
+  -o-animation: loader 2s linear infinite;
+}
+
+@-webkit-keyframes loaders {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+#content-wrapper {
+  color: #FFF;
+  position: fixed;
+  left: 0;
+  top: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+#header
+{
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  height: 100px;
+  background-color: #666;
+}
+
+#content
+{
+  width: 800px;
+  height: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #888;
+}
+</style>
+<script>
+ var points = parseInt(localStorage.getItem("points")) || 0;
+  var usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
+
+  if (points > usedCodes.length) {
+    // Illegal modification detected
+    points = 0;
+    localStorage.setItem("points", points);
+    $("#points").text(points);
+    alert("分数经过第三方非法修改，已被归零处理。若有疑问，请联系awakenmythicalcreatures@gmail.com");
+    return;
+  }
+
+  // Retrieve the redemption codes from the external JSON file
+  $.ajax({
+    url: "https://pwcreatures.vercel.app/redemption/codes.json",
+    dataType: "json",
+    success: function(data) {
+      var redemptionCodes = data.redemptionCodes;
+
+      // Check if each used code is present in the redemptionCodes array
+      for (var i = 0; i < usedCodes.length; i++) {
+        if (!redemptionCodes.includes(usedCodes[i])) {
+          // Code not found in JSON file, indicating illegal modification
+          points = 0;
+          localStorage.setItem("points", points);
+          $("#points").text(points);
+          alert("分数经过第三方非法修改，已被归零处理。若有疑问，请联系awakenmythicalcreatures@gmail.com");
+          return;
+        }
+      }
+      
+      // All codes are valid, update the displayed points
+      $("#points").text(points);
+    },
+    error: function() {
+      $("#message").text("网络波动。❌internet error");
+    }
+  });
+});
+</script>
