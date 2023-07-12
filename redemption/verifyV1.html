@@ -413,6 +413,7 @@ body {
       points = 0;
       localStorage.setItem("points", points);
       $("#points").text(points);
+             var errorDetected = true;
       alert("分数经过第三方非法修改，已被归零处理。若有疑问，请联系awakenmythicalcreatures@gmail.com");
       return;
     }
@@ -431,6 +432,7 @@ body {
             points = 0;
             localStorage.setItem("points", points);
             $("#points").text(points);
+                     var errorDetected = true;
             alert("分数经过第三方非法修改，已被归零处理。若有疑问，请联系awakenmythicalcreatures@gmail.com");
             return;
           }
@@ -440,20 +442,29 @@ body {
         $("#points").text(points);
       },
       error: function() {
+               var errorDetected = true;
         alert("网络波动。❌internet error");
       }
     });
 
-    $(window).on('load', function() {
-      var previousURL = document.referrer;
-      var targetURL = "https://pwcreatures.vercel.app/exchanging/index.html";
+$(window).on('load', function() {
+  var previousURL = document.referrer;
+  var targetURL = "https://pwcreatures.vercel.app/exchanging/index.html";
 
-      setTimeout(function() {
-        if (previousURL === targetURL) {
-          window.close();
-        }
-      }, 2000);
-    });
+
+  setTimeout(function() {
+    if (previousURL === targetURL) {
+      errorDetected = true;
+      alert("Error: An error has been detected.");
+    }
+
+    if (!errorDetected) {
+      alert("No error detected. Window will be closed.");
+      window.close();
+    }
+  }, 2000);
+});
+
   </script>
 </body>
 </html>
