@@ -1,7 +1,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>唤醒神兽-积分效验V1.0</title>
+    <title>唤醒神兽-积分效验V1</title>
     <meta http-equiv="refresh" content="10;URL=index.html">
 
     
@@ -22,48 +22,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
         <script>
-    var points = parseInt(localStorage.getItem("points")) || 0;
-    var usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
-
-    if (points > usedCodes.length) {
-      // Illegal modification detected
-      points = 0;
-      localStorage.setItem("points", points);
-      $("#points").text(points);
-             var errorDetected = true;
-      alert("分数经过第三方非法修改，已被归零处理。若有疑问，请联系awakenmythicalcreatures@gmail.com");
-      return;
-    }
-
-    // Retrieve the redemption codes from the external JSON file
-    $.ajax({
-      url: "https://pwcreatures.vercel.app/redemption/codes.json",
-      dataType: "json",
-      success: function(data) {
-        var redemptionCodes = data.redemptionCodes;
-
-        // Check if each used code is present in the redemptionCodes array
-        for (var i = 0; i < usedCodes.length; i++) {
-          if (!redemptionCodes.includes(usedCodes[i])) {
-            // Code not found in JSON file, indicating illegal modification
-            points = 0;
-            localStorage.setItem("points", points);
-            $("#points").text(points);
-                     var errorDetected = true;
-            alert("分数经过第三方非法修改，已被归零处理。若有疑问，请联系awakenmythicalcreatures@gmail.com");
-            return;
-          }
-        }
-
-        // All codes are valid, update the displayed points
-        $("#points").text(points);
-      },
-      error: function() {
-               var errorDetected = true;
-        alert("网络波动。❌internet error");
-      }
-    });
-    
+  
     
 var textarea = $('.term');
 var speed = 150; //Writing speed in milliseconds
