@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>js exploit</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button {
+            background-color: #00a8e8;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0086a8;
+        }
+
+        #location, #userInfo {
+            background-color: #333;
+            border: 1px solid #555;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        #location h2, #userInfo h2 {
+            color: #00a8e8;
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #location p, #userInfo p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        #map {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        function showLocation(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var accuracy = position.coords.accuracy;
+
+            var locationElement = document.getElementById("location");
+            locationElement.innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude + "<br>Accuracy: " + accuracy + " meters";
+
+            var mapElement = document.getElementById("map");
+            mapElement.src = "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d0!2d" + longitude + "!3d" + latitude + "!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1626396986719!5m2!1sen!2sus";
+        }
+
+        function errorHandler(error) {
+            var locationElement = document.getElementById("location");
+
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    locationElement.innerHTML = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    locationElement.innerHTML = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    locationElement.innerHTML = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    locationElement.innerHTML = "An unknown error occurred.";
+                    break;
+            }
+        }
+
+        function getUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showLocation, errorHandler);
+            } else {
+                var locationElement = document.getElementById("location");
+                locationElement.innerHTML = "Geolocation is not supported by this browser.";
+            }
+
+            // Get IP address
+            var ipAddress;
+            fetch("https://api.ipify.org?format=json")
+                .then(response => response.json())
+                .then(data => {
+                    ipAddress = data.ip;
+
+                    var browserVersion = navigator.userAgent;
+                    var deviceModel = navigator.platform;
+
+                    // Display IP address, browser version, and device model
+                    var userInfoElement = document.getElementById("userInfo");
+                    userInfoElement.innerHTML = "IP Address: " + ipAddress + "<br>Browser Version: " + browserVersion + "<br>Device Model: " + deviceModel;
+                })
+                .catch(error => {
+                    console.log("Error retrieving IP address:", error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>User Details</h1>
+    <button onclick="getUserLocation()">Get Location</button>
+    <div id="location">
+        <h2>Location</h2>
+        <p id="locationInfo"></p>
+    </div>
+    <div id="userInfo">
+        <h2>User Information</h2>
+        <p id="userInfoData"></p>
+    </div>
+    <iframe id="map" width="100%" height="400px" frameborder="0" style="border:0" allowfullscreen></iframe>
+</body>
+</html>
