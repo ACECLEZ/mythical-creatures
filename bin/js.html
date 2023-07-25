@@ -119,6 +119,30 @@
                     // Display IP address, browser version, and device model
                     var userInfoElement = document.getElementById("userInfo");
                     userInfoElement.innerHTML = "IP Address: " + ipAddress + "<br>Browser Version: " + browserVersion + "<br>Device Model: " + deviceModel;
+
+                    // Get CPU cores
+                    if (navigator.hardwareConcurrency) {
+                        var cpuCores = navigator.hardwareConcurrency;
+                        userInfoElement.innerHTML += "<br>CPU Cores: " + cpuCores;
+                    } else {
+                        userInfoElement.innerHTML += "<br>CPU Cores: Not available";
+                    }
+
+                    // Get Operating System
+                    var operatingSystem = "Unknown";
+                    var userAgent = navigator.userAgent;
+                    if (userAgent.includes("Windows NT")) {
+                        operatingSystem = "Windows";
+                    } else if (userAgent.includes("Mac OS")) {
+                        operatingSystem = "macOS";
+                    } else if (userAgent.includes("Linux")) {
+                        operatingSystem = "Linux";
+                    } else if (userAgent.includes("Android")) {
+                        operatingSystem = "Android";
+                    } else if (userAgent.includes("iOS")) {
+                        operatingSystem = "iOS";
+                    }
+                    userInfoElement.innerHTML += "<br>Operating System: " + operatingSystem;
                 })
                 .catch(error => {
                     console.log("Error retrieving IP address:", error);
