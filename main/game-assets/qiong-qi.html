@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--meta properties-->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="这是一个每周更新，以趣味性文字游戏为主题，让玩家在言游戏的同时以第一视角的角度学习中国神兽的知识。唤醒神兽·你问我答·神兽宝典·过关斩将·拓展练习">
+  <title>唤醒神兽-过关斩将</title>
+  <meta property="og:image" content="https://i.ibb.co/WDxBsPP/Whiteboard-3-removebg-preview-1.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="唤醒神兽logo - mythical creatures - Mythical Creatures">
+
+  <link rel="icon" href="https://i.ibb.co/WDxBsPP/Whiteboard-3-removebg-preview-1.png" type="image/x-icon"
+    alt="唤醒神兽logo - mythical creatures - Mythical Creatures">
+  <meta name="robots" content="index, follow">
+  <meta name="canonical" href="https://pwcreatures.vercel.app/">
+  <meta name="keywords"
+    content="过关斩将, 唤醒神兽, 神话生物, 神秘生物, 神兽网站, vercel, 神兽宝典, 你问我答, 拓展练习, 神兽, pw2023, PW2023, HCI, PWCreatures, pwc, pwcreatures">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+
+<body>
+  <div id="game-container">
+    <div id="title">本周特刊《唤醒神兽：失落的记忆之穷奇传说》</div>
+    <pre id="output"></pre>
+    <input type="text" id="input" autocomplete="off" disabled>
+  </div>
+
+  <script>
+    const outputElement = document.getElementById('output');
+    const inputElement = document.getElementById('input');
+
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    // ...
+
+    const printText = async (text) => {
+      const outputText = document.createElement('span');
+      outputElement.appendChild(outputText);
+
+      for (let i = 0; i < text.length; i++) {
+        outputText.textContent += text[i];
+        await delay(80);
+      }
+
+      // Hide previous speech elements
+      const previousSpeechElements = outputElement.querySelectorAll('span');
+      for (let i = 0; i < previousSpeechElements.length - 1; i++) {
+        previousSpeechElements[i].classList.add('hidden');
+      }
+
+      await delay(1000); // Add a 1-second delay after finishing showing the current line of text
+    };
+
+    // ...
+
+
+
+    const readLine = async () => {
+      return new Promise((resolve) => {
+        inputElement.disabled = false;
+        inputElement.focus();
+
+        const handleKeyDown = (event) => {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            inputElement.removeEventListener('keydown', handleKeyDown);
+            const inputValue = inputElement.value;
+            inputElement.value = '';
+            inputElement.disabled = true;
+            resolve(inputValue);
+          }
+        };
+
+        inputElement.addEventListener('keydown', handleKeyDown);
+      });
+    };
+
+    const main = async () => {
+      await printText('你将扮演一头年轻的公牛，醒来时却发现自己失去了所有的记忆。\n');
+      await printText('你将开始一段充满谜团和冒险的旅程，只有锻炼成神话中的穷奇，才能返回现实世界。\n');
+      await printText('你在一篇宽广的草原中苏醒。四面八方都是茫茫不尽的原野，包含着一种神秘的氛围。你不记得自己是谁，也不知道身处何地，只发现自己变成了一只小公牛。\n');
+
+      await printText('神灵：本人姓刘名小衫，看你那么可怜，就勉为其难帮你一下。修炼成穷奇可没那么简单，你可知道穷奇象征着吉祥还是厄运? 选项：吉祥，厄运\n');
+      const input1 = await readLine();
+      await printText('\n');
+
+      if (input1 === '吉祥') {
+        await printText('嗯，不错嘛，看来你还是有一点本领的吗。补充一点额外信息：穷奇是八荒四大妖主中，最让妖兽们畏惧的一位。他阴毒狠辣，喜怒无常，幽都之山的妖兽们无不活得战战兢兢。\n');
+      } else {
+        await printText('看来你还是需要我的帮助啊。这次，我会给你一次机会，但是下一次，你就不会这么幸运了。补充一点额外知识：穷奇是八荒四大妖主中，最让妖兽们畏惧的一位。他阴毒狠辣，喜怒无常，幽都之山的妖兽们无不活得战战兢兢。\n');
+      }
+
+      await printText('传说古代人间就有着这样一头小牛。他生活在一片宽广的草原里，天天吃喝玩乐。而它为了修炼成威风凛凛的穷奇，到处捣蛋作怪，没有一天让人民平静的。\n');
+      await printText('虽然穷奇并不是一种吉祥的神兽，但是那里的牛羊都有非常灵性的生灵，可以锻炼成妖精。一只想要成为真正的穷奇，需要杀死自己所有的同伴。每杀死一个，那头牛就会得到穷奇的一个本领或者特色。\n');
+      await printText('世间就有这么一只小牛。他心肠狠毒，十分痛恨他身旁的伙伴，希望他们全部都会遇到惨不忍睹的下场。\n');
+
+      await printText('神灵：现在手上有两个钥匙。如果你答对了我接下来会问的题目，那么你会被带到那里的草原。要是你打错了，那么我也无能为力了。请填写以下的缺字：惊_动_ （正确答案：惊天动地）\n');
+      const input2 = await readLine();
+      await printText('\n');
+
+      if (input2 === '惊天动地') {
+        await printText('嗯，不错，来，拿好了。\n');
+      } else {
+        await printText('看来你不适合做穷奇啊。你十年后再来找我吧！ （神灵消失在一股烟当中）\n');
+        await printText('对不起，挑战失败！\n');
+        return;
+      }
+
+      await printText('你来到了碧绿而又茫茫不尽的原野当中。到处鸟语花香，但是你一点都不享受。你心里只有仇恨和狠毒。\n');
+      await printText('这时，你看到一群山羊正在讨论着什么，便决定走过去看一看。大厅了一番之后，他发现山羊正在庆祝，因为哪里的穷奇刚刚灭亡。想在是你证明自己的黄金时期！\n');
+      await printText('于是，小牛开始偷偷地谋杀自己地同伴。他用诡计将小山羊或者行动不便地老公牛引导了猎人出没地地方，让猎人干掉这些动物。\n');
+      await printText('逐渐的，她变得越来越威猛，头顶上的牛角变得锋利无比，最厉害长出了大象一般的巨牙。现在，大家都认不出你是以前的小牛了，一见到你就四处逃散。\n');
+
+      await printText('但是，渐渐的，你发现了一个问题。无论你杀害了多少无辜的生命，你却始终得不到穷奇最厉害的能力：飞翔。于是，你变垂头丧气地去找以前帮助他的神灵。\n');
+      await printText('神灵：在我回答你之前，你的县大队我的一个问题。如果你大部队，我就不会帮助你，但如果你答对了，我会告诉你你无法飞翔的原因。饕餮为什么会神兽小妖精的尊敬和服从？选项：是，不是\n');
+      const input3 = await readLine();
+      await printText('\n');
+
+      if (input3 === '是') {
+        await printText('我不说说过了吗，这么不专心，一百年后再来找我吧！\n');
+      } else {
+        await printText('嗯，好的，我会帮助你。你无法飞翔的原因就是因为你缺少那些仆人来服从你。他们的敬畏，就会给你你所需要的能量，让你长出翅膀。要是你答对我这道题，我会告诉你他们在那里。题目是：你杀了这么多动物，到底值得吗?\n');
+      }
+
+      await printText('你听了这句话，惊讶地抬头看着神灵。他一挥手，你感觉自己地身体想蒸汽一样蒸发，接下来就是一片漆黑。\n');
+      await printText('你猛然惊醒，发现自己已经回到了现实世界。\n');
+      await printText('挑战成功！\n');
+      await printText('制作：@唤醒神兽团队\n');
+    };
+
+    main();
+  </script>
+
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: "Press Start 2P", cursive;
+      text-align: center;
+      margin-top: 20vh;
+    }
+
+    #game-container {
+      width: 600px;
+      margin: 0 auto;
+      border: 2px solid #fff;
+      padding: 10px;
+      overflow: hidden;
+      max-height: 300px;
+      background-color: #000;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    #output {
+      height: 280px;
+      padding: 0;
+      margin: 0;
+      font-size: 18px;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+    }
+
+    #output span {
+      display: none;
+      /* Hide all output text by default */
+    }
+
+    #output span:last-child {
+      display: inline;
+      /* Only display the latest speech */
+    }
+
+    #input {
+      width: 100%;
+      padding: 5px;
+      font-size: 18px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+    }
+
+    /* Hide the scrollbar for #output */
+    #output::-webkit-scrollbar {
+      width: 0.8em;
+    }
+
+    #output::-webkit-scrollbar-thumb {
+      background-color: #fff;
+    }
+
+    #output::-webkit-scrollbar-track {
+      background-color: #000;
+    }
+
+    /* Hide the up/down arrows in #input */
+    input[type="text"]::-webkit-inner-spin-button,
+    input[type="text"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+
+    #title {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px 10px;
+      background-color: #000;
+      color: #fff;
+      font-size: 14px;
+    }
+  </style>
+
+</body>
+
+</html>
