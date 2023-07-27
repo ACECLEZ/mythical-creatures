@@ -908,7 +908,12 @@ function first() {
 
             <ul class="main__discover-places">
 
-              <li class="main__discover-place">
+              <li onclick="chat()" class="main__discover-place">
+                <script>
+                function chat() {
+                  window.open("https://pwcreatures.vercel.app/main/chat.html", "_blank");
+                }
+                                  </script>
                 <h4 class="main__discover-place-heading">你问我答</h4>
                 <p class="main__discover-place-sub">ChatGPT 3.5 API 提供优质回复</p>
                 <div class="main__discover__more">
@@ -965,7 +970,13 @@ function first() {
                 </div>
               </li>
 
-              <li class="main__discover-place">
+              <li onclick="shop()" class="main__discover-place">
+                <script>
+                  function shop() {
+                    window.open("https://pwcreatures.vercel.app/main/exchanging/index.html", "_blank");
+                  }
+                                    </script>
+
                 <h4 class="main__discover-place-heading">兑换商店</h4>
                 <p class="main__discover-place-sub">精美的唤醒神兽实体卡牌等你来换</p>
                 <div class="main__discover__more">
@@ -991,7 +1002,12 @@ function first() {
                 </div>
               </li>
 
-              <li class="main__discover-place">
+              <li onclick="assistant" class="main__discover-place">
+                <script>
+                  function assistant() {
+                    window.open("https://pwcreatures.vercel.app/main/game-assistant.html", "_blank");
+                  }
+                                    </script>
                 <h4 class="main__discover-place-heading">游戏助手</h4>
                 <p class="main__discover-place-sub">包括了线下游戏指南以及辅助游戏的积分系统</p>
                 <div class="main__discover__more">
