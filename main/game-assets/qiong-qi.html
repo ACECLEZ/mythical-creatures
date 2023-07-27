@@ -26,7 +26,7 @@
 
 <body>
   <div id="game-container">
-    <div id="title">本周特刊《唤醒神兽：失落的记忆之穷奇传说》</div>
+    <div id="title">《唤醒神兽：失落的记忆之穷奇传说》</div>
     <pre id="output"></pre>
     <input type="text" id="input" autocomplete="off" disabled>
   </div>
@@ -81,6 +81,7 @@
     };
 
     const main = async () => {
+      await printText('《唤醒神兽：失落的记忆之九尾狐传说》\n');
       await printText('你将扮演一头年轻的公牛，醒来时却发现自己失去了所有的记忆。\n');
       await printText('你将开始一段充满谜团和冒险的旅程，只有锻炼成神话中的穷奇，才能返回现实世界。\n');
       await printText('你在一篇宽广的草原中苏醒。四面八方都是茫茫不尽的原野，包含着一种神秘的氛围。你不记得自己是谁，也不知道身处何地，只发现自己变成了一只小公牛。\n');
