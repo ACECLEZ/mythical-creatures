@@ -97,19 +97,18 @@ body {
   <div class="gallery-image">
 
     <!--穷奇-->
-    <div class="img-box" onclick="qiongqi()">
+    <div class="img-box">
       <img src="https://picsum.photos/350/250?image=444" alt="穷奇图片" />
       <div class="transparent-box">
         <div class="caption">
           <p>穷奇</p>
-          <p class="opacity-low">神兽简介在此</p>
-          <p class="opacity-low">查看更多资料</p>
-          <p class="opacity-low">过关斩将|获取卡片</p>
+          <p class="opacity-low" onclick="QiongQiInfo()">查看更多资料</p>
+          <p class="opacity-low" onclick="QiongQiGame()">过关斩将|获取卡片</p>
         </div>
       </div> 
     </div>
 <script>
-    function qiongqi(){
+    function QiongQiGame(){
         window.open("/main/game-assets/qiong-qi/", target="_blank")
     }
 </script>
