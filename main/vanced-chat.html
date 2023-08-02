@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="chatbox">
+        <div class="chatlogs" id="chatlogs">
+            <!-- Chat logs will be added here dynamically -->
+        </div>
+        <input type="text" id="userInput" placeholder="Type your message...">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.chatbox {
+    max-width: 400px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chatlogs {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.chat {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.user {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+.bot {
+    background-color: #e0f0ff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+</style>
+<script>
+const chatLogs = document.getElementById("chatlogs");
+const userInput = document.getElementById("userInput");
+
+// Replace 'YOUR_OPENAI_API_KEY' with your actual API key
+const apiKey = "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";
+
+// Function to display a message in the chat box
+function displayMessage(sender, message) {
+  const chatDiv = document.createElement("div");
+  chatDiv.className = "chat";
+  chatDiv.innerHTML = `<div class="${sender}">${message}</div>`;
+  chatLogs.appendChild(chatDiv);
+  chatLogs.scrollTop = chatLogs.scrollHeight;
+}
+
+// Function to fetch the bot response from OpenAI GPT-3
+async function fetchBotResponse(userInput) {
+  try {
+    const response = await axios.post(
+      "https://api.openai.com/v1/engines/davinci-codex/completions",
+      {
+        prompt: userInput,
+        max_tokens: 150,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+      }
+    );
+    return response.data.choices[0].text.trim();
+  } catch (error) {
+    console.error("Error fetching bot response:", error);
+    return "Sorry, something went wrong while processing your request.";
+  }
+}
+
+// Handle user input and generate bot responses
+async function handleUserInput() {
+  const userMessage = userInput.value;
+  if (userMessage.trim() === "") {
+    return;
+  }
+
+  displayMessage("user", userMessage);
+
+  // Clear user input
+  userInput.value = "";
+
+  // Fetch bot response using GPT-3 API
+  const botResponse = await fetchBotResponse(userMessage);
+
+  displayMessage("bot", botResponse);
+}
+
+// Event listener for user input submission
+userInput.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    handleUserInput();
+  }
+});
+
+// Initial bot greeting
+displayMessage("bot", "Hello! How can I help you today?");
+
+</script>
+
+<!-- Start of Async Drift Code -->
+<script>
+"use strict";
+
+!function() {
+  var t = window.driftt = window.drift = window.driftt || [];
+  if (!t.init) {
+    if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+    t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+    t.factory = function(e) {
+      return function() {
+        var n = Array.prototype.slice.call(arguments);
+        return n.unshift(e), t.push(n), t;
+      };
+    }, t.methods.forEach(function(e) {
+      t[e] = t.factory(e);
+    }), t.load = function(t) {
+      var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+      o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+      var i = document.getElementsByTagName("script")[0];
+      i.parentNode.insertBefore(o, i);
+    };
+  }
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+drift.load('4atp2dzepwhh');
+</script>
+<!-- End of Async Drift Code -->
