@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTTP Flood</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  #console {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: scroll;
+    background-color: black;
+  }
+  #console p {
+    margin: 0;
+  }
+  #console p.success {
+    color: green;
+  }
+  #console p.failure {
+    color: red;
+  }
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>HTTP Flooder</h2>
+  <label for="url">URL:</label>
+  <input type="text" id="url" placeholder="Enter a URL">
+  <label for="numRequests">Number of Requests:</label>
+  <input type="number" id="numRequests" min="1" value="1">
+  <button id="sendRequests">Send Requests</button>
+  <div id="console"></div>
+</div>
+<script>
+document.getElementById("sendRequests").addEventListener("click", async function() {
+  const url = document.getElementById("url").value;
+  const numRequests = parseInt(document.getElementById("numRequests").value);
+  const consoleDiv = document.getElementById("console");
+
+  if (!url || !numRequests) {
+    const errorElement = document.createElement("p");
+    errorElement.classList.add("failure");
+    errorElement.textContent = "Invalid input. (404 - )";
+
+    consoleDiv.appendChild(errorElement);
+    consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    return;
+  }
+
+  for (let i = 0; i < numRequests; i++) {
+    try {
+      const response = await fetch(url);
+      const success = response.ok;
+      const statusText = success ? "Success" : "Failure";
+      const logMessage = `${i + 1}. Request ${statusText} (${response.status} - ${response.statusText})`;
+
+      const logElement = document.createElement("p");
+      logElement.classList.add(success ? "success" : "failure");
+      logElement.textContent = logMessage;
+
+      consoleDiv.appendChild(logElement);
+      consoleDiv.scrollTop = consoleDiv.scrollHeight;
+
+    } catch (error) {
+      const logElement = document.createElement("p");
+      logElement.classList.add("failure");
+      logElement.textContent = `${i + 1}. Request Failure (Error: ${error.message})`;
+
+      consoleDiv.appendChild(logElement);
+      consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    }
+  }
+});
+</script>
+</body>
+</html>
