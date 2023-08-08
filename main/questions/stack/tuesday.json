@@ -1,13 +1,13 @@
 [
     {
       "numb": 1,
-      "question": "Question 1?",
-      "answer": "Correct Answer 1",
+      "question": "中国神话中，哪种神兽被认为是吉祥之兽，通常与皇帝和权力联系在一起？",
+      "answer": "凤凰",
       "options": [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Correct Answer 1"
+        "麒麟",
+        "龙",
+        "虎",
+        "凤凰"
       ]
     },
     {
