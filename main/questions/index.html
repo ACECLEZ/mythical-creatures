@@ -461,7 +461,7 @@ footer button.show{
 
 <script>
 /*get different question everyday*/
-
+/*
 let questions;
 const day = (new Date()).getDay();
 
@@ -522,7 +522,20 @@ if (day === 0) { // Sunday
     })
     .catch(error => console.error(error));
 }
+*/
 
+const day = (new Date()).getDay();
+const dayOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][day];
+
+const apiUrl = `https://pwcreatures.vercel.app/main/questions/stack/${dayOfWeek}.json`;
+
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => {
+    questions = data;
+    console.log(questions);
+  })
+  .catch(error => console.error(error));
 
 
 /*end*/
