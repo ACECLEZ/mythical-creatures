@@ -1,24 +1,24 @@
 [
     {
       "numb": 1,
-      "question": "中国神话中，哪种神兽被认为是吉祥之兽，通常与皇帝和权力联系在一起？",
-      "answer": "凤凰",
+      "question": "中国四大神兽中，代表西方的是哪个？",
+      "answer": "白虎",
       "options": [
+        "白虎",
+        "青龙",
         "麒麟",
-        "龙",
-        "虎",
-        "凤凰"
+        "朱雀"
       ]
     },
     {
       "numb": 2,
-      "question": "Question 2?",
-      "answer": "Correct Answer 2",
+      "question": "哪个神兽通常被描述为蛇身人面，拥有狐狸耳朵？",
+      "answer": "貔貅",
       "options": [
-        "Option 1",
-        "Option 2",
-        "Correct Answer 2",
-        "Option 3"
+        "白虎",
+        "黑龙",
+        "麒麟",
+        "貔貅"
       ]
     },
     {
