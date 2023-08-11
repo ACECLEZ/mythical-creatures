@@ -103,7 +103,21 @@
   <div class="newgame">
     <button onclick="resetGame()">重新开始</button>
   </div>
+  <button onclick="st()">网站结构图</button>
+  <button onclick="nd()">卡牌游戏结构图</button>
+  <button onclick="rd()">线上游戏指南</button>
   <script>
+    function st(){
+      window.open("https://www.canva.com/design/DAFrMK9KdzE/iiWSSnBdWLwJlowq6CNXLw/edit", "_blank");
+    }
+
+    function nd(){
+      window.open("https://www.canva.com/design/DAFrO5Hy2lo/C3POl7gykTMtTizTsHiDKA/edit", "_blank");
+    }
+
+    function rd(){
+      window.open("https://pwcreatures.vercel.app/images/game-rules-video-v2.mp4");
+    }
     let round = 1;
     let team1Points = 0;
     let team2Points = 0;
