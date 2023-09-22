@@ -35,4 +35,50 @@ function chkFrame(fr) {
   debugger;
   if (!fr.contentWindow.location) alert('Cross domain');
 }
+        //protect
+        let isPageVisible = true;
+
+function disableClicks() {
+  document.addEventListener('click', () => {
+    if (isPageVisible) {
+      alert('Access denied');
+    }
+  });
+
+  document.addEventListener('keydown', () => {
+    if (isPageVisible) {
+      alert('Access denied');
+    }
+  });
+
+  document.body.style.cursor = 'not-allowed';  // Change mouse cursor to disabled emoticon
+}
+
+function enableClicks() {
+  document.removeEventListener('click', () => {
+    if (isPageVisible) {
+      alert('Access denied');
+    }
+  });
+
+  document.removeEventListener('keydown', () => {
+    if (isPageVisible) {
+      alert('Access denied');
+    }
+  });
+
+  document.body.style.cursor = 'auto';  // Restore normal mouse cursor
+}
+
+// Event listener to check if the page is visible or not
+document.addEventListener('visibilitychange', () => {
+  isPageVisible = document.visibilityState === 'visible';
+
+  if (isPageVisible) {
+    enableClicks();  // Enable clicks when the page is visible
+  } else {
+    disableClicks();  // Disable clicks when the page is not visible
+  }
+});
+
 </script>
