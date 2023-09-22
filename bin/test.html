@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body, html {
+  height: 100%;
+  margin: 0 auto;
+}
+
+.fluidMedia {
+  height: 100%;
+  overflow: auto; /* Enable scrolling for the iframe's container */
+}
+
+.fluidMedia iframe {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+</head>
+<body>
+<div class="fluidMedia">
+  <iframe
+    src="https://docs.google.com/document/d/1wtUJaIMPCsY47rtpIAwHTklE0o4EYDr4aGcRy10g_PE/edit?embedded=true"
+    onload="frameLoaded()"></iframe>
+</div>
+
+<script>
+let isPageVisible = true;
+
+function enableInteractions() {
+  document.body.classList.remove('disable-interactions');
+}
+
+function frameLoaded() {
+  const iframe = document.querySelector('iframe');
+  iframe.contentWindow.document.addEventListener('visibilitychange', () => {
+    isPageVisible = document.visibilityState === 'visible';
+    if (isPageVisible) {
+      enableInteractions();
+    } else {
+      document.body.classList.add('disable-interactions');
+    }
+  });
+}
+</script>
+
+</body>
+</html>
