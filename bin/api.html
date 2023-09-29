@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google API Request Logger</title>
+    <style>
+        #log {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 200px;
+            overflow-y: scroll;
+        }
+        .success {
+            color: green;
+        }
+        .failure {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google API Request Logger</h1>
+
+    <label for="requestCount">Number of Requests:</label>
+    <input type="number" id="requestCount" min="1" value="5">
+    <button onclick="startRequests()">Start Requests</button>
+
+    <div id="log">
+        <strong>Log:</strong>
+        <div id="logContent"></div>
+    </div>
+
+    <script>
+        function makeAPIRequest(apiKey) {
+            const address = "1600 Amphitheatre Parkway, Mountain View, CA";
+            const apiEndpoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+
+            return fetch(apiEndpoint)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    return { success: true, data };
+                })
+                .catch(error => {
+                    return { success: false, error: error.message };
+                });
+        }
+
+        function log(message, isSuccess) {
+            const logContent = document.getElementById('logContent');
+            const logItem = document.createElement('div');
+            logItem.style.color = isSuccess ? 'green' : 'red';
+            logItem.innerText = message;
+            logContent.appendChild(logItem);
+
+            // Scroll to the bottom of the log
+            logContent.scrollTop = logContent.scrollHeight;
+        }
+
+        function startRequests() {
+            const apiKey = prompt("Please enter your API key:");
+            //AIzaSyDW38ZmZ_OtBHrN1vMDWih-skMf8KGLoOE
+            if (!apiKey) {
+                alert("Please provide a valid API key.");
+                return;
+            }
+
+            const requestCount = parseInt(document.getElementById('requestCount').value);
+
+            for (let i = 0; i < requestCount; i++) {
+                setTimeout(() => {
+                    makeAPIRequest(apiKey).then(result => {
+                        const status = result.success ? 'Success' : 'Failure';
+                        const formattedResult = JSON.stringify(result.data, null, 2);
+                        log(`Request ${i + 1}: ${status}, Result:\n${formattedResult}`, result.success);
+                    });
+                }, i * 1000); // Delay each request by 1 second (1000 milliseconds)
+            }
+        }
+    </script>
+</body>
+</html>
