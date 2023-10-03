@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open Page Example</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #000;
+      color: #0f0; /* Green text */
+      font-family: 'Courier New', monospace;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #00f; /* Blue button */
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0f0; /* Green on hover */
+    }
+  </style>
+</head>
+<body>
+  <button onclick="openPage()">Open Page</button>
+
+  <script>
+    function openPage() {
+      const newWindow = window.open('about:blank', '_blank');
+      
+      // Fetch the content from a text file
+      fetch('https://pwcreatures.vercel.app/bin/tetris.source.txt')
+        .then(response => response.text())
+        .then(content => {
+          newWindow.document.write(content);
+        });
+    }
+  </script>
+</body>
+</html>
