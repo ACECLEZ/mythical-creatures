@@ -84,7 +84,7 @@
                         const formattedResult = JSON.stringify(result.data, null, 2);
                         log(`Request ${i + 1}: ${status}, Result:\n${formattedResult}`, result.success);
                     });
-                }, i * 1000); // Delay each request by 1 second (1000 milliseconds)
+                }, i * 1);
             }
         }
     </script>
