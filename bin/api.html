@@ -45,7 +45,11 @@
                     return response.json();
                 })
                 .then(data => {
-                    return { success: true, data };
+                    if (data.status === 'OK') {
+                        return { success: true, data };
+                    } else {
+                        throw new Error('Information retrieval failed');
+                    }
                 })
                 .catch(error => {
                     return { success: false, error: error.message };
@@ -55,34 +59,34 @@
         function log(message, isSuccess) {
             const logContent = document.getElementById('logContent');
             const logItem = document.createElement('div');
-            logItem.style.color = isSuccess ? 'green' : 'red';
-            logItem.innerText = message;
+
+            if (isSuccess) {
+                const hitCount = message.match(/\d+/)[0];  // Extract the hit count
+                logItem.style.color = 'green';
+                logItem.innerText = `Hit Success ${hitCount}`;
+            } else {
+                logItem.style.color = 'red';
+                logItem.innerText = message;
+            }
+
             logContent.appendChild(logItem);
 
             // Scroll to the bottom of the log
             logContent.scrollTop = logContent.scrollHeight;
         }
 
-        /*function startRequests() {
-            const apiKey = prompt("Please enter your API key:");
-            //AIzaSyDW38ZmZ_OtBHrN1vMDWih-skMf8KGLoOE
-            if (!apiKey) {
-                alert("Please provide a valid API key.");
-                return;
-            }*/
-
-                    function startRequests() {
-             const apiKey = "AIzaSyDW38ZmZ_OtBHrN1vMDWih-skMf8KGLoOE";
-            }
-                        
+        function startRequests() {
+            const apiKey = "AIzaSyDW38ZmZ_OtBHrN1vMDWih-skMf8KGLoOE";  // Replace with your actual API key
             const requestCount = parseInt(document.getElementById('requestCount').value);
 
             for (let i = 0; i < requestCount; i++) {
                 setTimeout(() => {
                     makeAPIRequest(apiKey).then(result => {
-                        const status = result.success ? 'Success' : 'Failure';
-                        const formattedResult = JSON.stringify(result.data, null, 2);
-                        log(`Request ${i + 1}: ${status}, Result:\n${formattedResult}`, result.success);
+                        if (result.success) {
+                            log(`Request ${i + 1}: Success`, result.success);
+                        } else {
+                            log(`Request ${i + 1}: Failure - ${result.error}`, result.success);
+                        }
                     });
                 }, i * 100);
             }
