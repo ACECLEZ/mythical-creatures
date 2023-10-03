@@ -63,15 +63,18 @@
             logContent.scrollTop = logContent.scrollHeight;
         }
 
-        function startRequests() {
-            //const apiKey = prompt("Please enter your API key:");
-             const apiKey = "AIzaSyDW38ZmZ_OtBHrN1vMDWih-skMf8KGLoOE";
+        /*function startRequests() {
+            const apiKey = prompt("Please enter your API key:");
             //AIzaSyDW38ZmZ_OtBHrN1vMDWih-skMf8KGLoOE
             if (!apiKey) {
                 alert("Please provide a valid API key.");
                 return;
-            }
+            }*/
 
+                    function startRequests() {
+             const apiKey = "AIzaSyDW38ZmZ_OtBHrN1vMDWih-skMf8KGLoOE";
+            }
+                        
             const requestCount = parseInt(document.getElementById('requestCount').value);
 
             for (let i = 0; i < requestCount; i++) {
