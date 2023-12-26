@@ -14,14 +14,14 @@
     <div class="container">
         <div class="screen">
             <div class="screen__content">
-                <form class="login">
+                <form class="login" id="login-form">
                     <div class="login__field">
                         <i class="login__icon fas fa-user"></i>
-                        <input type="text" class="login__input" placeholder="用户名">
+                        <input type="text" class="login__input" placeholder="用户名" id="email-input">
                     </div>
                     <div class="login__field">
                         <i class="login__icon fas fa-lock"></i>
-                        <input type="password" class="login__input" placeholder="密码">
+                        <input type="password" class="login__input" placeholder="密码" id="password-input">
                     </div>
                     <button class="button login__submit">
                         <span class="button__text">登录</span>
@@ -54,6 +54,61 @@
     </div>
 </body>
 
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDI7umn2-8ZFavRKp9VA7ICbSPK565Tr7E",
+      authDomain: "werewolfcn-verification.firebaseapp.com",
+      projectId: "werewolfcn-verification",
+      storageBucket: "werewolfcn-verification.appspot.com",
+      messagingSenderId: "142485047602",
+      appId: "1:142485047602:web:2847c391df2f7095a9af2b",
+      measurementId: "G-K708J7LHQK"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
+<script type="module">
+    // Get a reference to the Firebase authentication instance
+    const auth = getAuth();
+
+    // Get the login form elements
+    const loginForm = document.querySelector("#login-form");
+    const emailInput = document.querySelector("#email-input");
+    const passwordInput = document.querySelector("#password-input");
+
+    // Add an event listener to the login form
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault(); // Prevent the form from submitting
+
+      //change pw by resetting account or email
+      //EEX6MW9A9HV6VBFXA7ZM
+      const email = "login@werewolfcn.com";
+      const password = passwordInput.value;
+
+      // Call the Firebase signInWithEmailAndPassword method to sign in the user
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+        alert("Login Success✓");  
+        })
+        .catch((error) => {
+          // Handle errors that occurred during sign-in
+          //errorMessage.textContent = error.message;
+          alert("USER OR DEVICE NOT REGISTERED");
+        });
+    });
+  </script>
+
 <style>
     @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
@@ -66,21 +121,16 @@
 
     body {
         background: linear-gradient(90deg, #C7C5F4, #776BCC);
-        overflow: hidden !important;
-        max-width: 100%;
-max-height: 100%;
-overflow-x: hidden;
-overflow-y: hidden;
-
+        overflow: hidden;
     }
 
     html {
-        scrollbar-width: none !important;
-        -ms-overflow-style: none !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 
     ::-webkit-scrollbar {
-        display: none !important;
+        display: none;
     }
 
     .container {
